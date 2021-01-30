@@ -1,18 +1,28 @@
 import socket
+import sys
 
-host = socket.gethostbyname('www.tutorialspoint.com')
+name = input('Enter host name')
+host = socket.gethostbyname(name)
 print(host)
-ip = host
+beg = int(input("Enter start :"))
+end = int(input("Enter stop :"))
 
-sock = socket.socket()
+def hello():
+    print("hello")
 
-while 1:
+def portscan(port):
+    sock = socket.socket()
     try:
-        port = input("Enter the port")
-        sock = socket.socket()
         sock.connect((host,port))
-        print("Port {}: open " .format(port))            
-        sock.close()
-    except:     
-        print("ort {}: closed " .format(port))
-print("Port scanning complete")
+        return True
+    except:
+        return False
+    print("Port scanning complete")
+
+
+for i in range(beg,end):
+    result = portscan(i)
+    if result:
+        print("Port {}: Open".format(i))
+    else:
+        print("Port {}: Closed".format(i))
