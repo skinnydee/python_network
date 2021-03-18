@@ -13,11 +13,13 @@ print('connected to ', addr)
 
 while True:
     data = conn.recv(1024)
-    data1 = conn.recv(1024)
-    print(data)
-    data1 = str(data)
-    result = int(data1[2]) + int(data1[4])
-:    conn.send(bytes(str(result),'utf-8'))
+    data1 = str(data.decode())
+    data1.split(',')
+    print(data1)
+    print(len(data1))
+    print(data1[0])
+    result = int(data1[0]) + int(data1[2])
+    conn.send(bytes(str(result),'utf-8'))
 conn.close()
 
 
